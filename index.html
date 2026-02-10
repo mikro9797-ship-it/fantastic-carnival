@@ -3,106 +3,1514 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Creator Course</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <title>B4 FLOW | Creative Studio - Премиум разработка сайтов и веб-приложений</title>
+    
+    <!-- Подключение шрифтов Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Подключение иконок Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Подключение GSAP для анимаций -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    
     <style>
-        :root {
-            --bg-color: #F6F1E8;
-            --accent-gold: #9C7348;
-            --card-bg: #FCF9F3;
-        }
-
-        body {
+        /* ========== Глобальные стили и сброс ========== */
+        /* Эти стили устанавливают базовые правила для всего документа */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: #333;
         }
-
-        .serif {
-            font-family: 'Playfair Display', serif;
+        
+        :root {
+            /* Цветовая палитра сайта */
+            --primary-color: #2A2D43; /* Основной темный цвет */
+            --secondary-color: #5A67D8; /* Акцентный синий цвет */
+            --accent-color: #9F7AEA; /* Акцентный фиолетовый цвет */
+            --light-color: #F7FAFC; /* Светлый фон */
+            --text-color: #2D3748; /* Основной цвет текста */
+            --text-light: #718096; /* Светлый текст */
+            --white: #FFFFFF; /* Белый цвет */
+            --gray-border: #E2E8F0; /* Цвет границ */
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Тень для элементов */
+            --transition: all 0.3s ease; /* Стандартная анимация */
+            
+            /* Размеры для адаптивности */
+            --container-width: 1200px;
+            --header-height: 80px;
         }
-
-        .accordion-content {
-            max-height: 0;
+        
+        html {
+            scroll-behavior: smooth; /* Плавная прокрутка по якорям */
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden; /* Скрытие горизонтального скролла */
+        }
+        
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* ========== Типографика ========== */
+        /* Настройка всех текстовых элементов для соблюдения иерархии */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Manrope', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem; /* 56px */
+            letter-spacing: -0.02em;
+        }
+        
+        h2 {
+            font-size: 2.5rem; /* 40px */
+            margin-bottom: 1.5rem;
+        }
+        
+        h3 {
+            font-size: 1.75rem; /* 28px */
+        }
+        
+        h4 {
+            font-size: 1.25rem; /* 20px */
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        /* ========== Кнопки ========== */
+        /* Стили для всех кнопок на сайте с hover-эффектами */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 1rem;
+            letter-spacing: 0.01em;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: #4C51BF;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(90, 103, 216, 0.3);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--gray-border);
+        }
+        
+        .btn-outline:hover {
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
+        }
+        
+        /* ========== Шапка сайта (Header) ========== */
+        /* Фиксированная шапка с навигацией, логотипом и корзиной */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            height: var(--header-height);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+        
+        /* Логотип - можно заменить на изображение, изменив background-image */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .logo-sub {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-left: 5px;
+        }
+        
+        /* Основная навигация */
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-menu a.active {
+            color: var(--secondary-color);
+        }
+        
+        .nav-menu a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        /* Блок с иконками (корзина, пользователь) */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent-color);
+            color: var(--white);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .auth-btn {
+            padding: 8px 16px;
+            font-size: 0.875rem;
+        }
+        
+        /* Бургер-меню для мобильных устройств */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 24px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .burger-menu span {
+            display: block;
+            height: 2px;
+            width: 100%;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        /* Мобильное меню */
+        .mobile-menu {
+            position: fixed;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            padding: 2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.3s ease;
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .mobile-menu ul {
+            list-style: none;
+        }
+        
+        .mobile-menu li {
+            margin-bottom: 1.5rem;
+        }
+        
+        .mobile-menu a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        /* ========== Главный экран (Hero) ========== */
+        /* Первый экран с основным сообщением и призывом к действию */
+        .hero {
+            padding-top: calc(var(--header-height) + 4rem);
+            padding-bottom: 6rem;
+            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+            position: relative;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
         }
-
-        .accordion-item.active .accordion-content {
-            max-height: 200px; /* запас, чтобы текст не обрезался */
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center right;
+            background-size: cover;
+            opacity: 0.1;
         }
-
-        .accordion-item.active svg {
-            transform: rotate(180deg);
+        
+        /* 
+        ЗАМЕНА ФОНА ГЛАВНОГО ЭКРАНА:
+        1. Замените URL в свойстве background-image выше на путь к вашему изображению
+        2. Для локального изображения используйте: url('images/hero-bg.jpg')
+        3. Рекомендуемый размер: не менее 1920x1080 пикселей
+        4. Формат: JPG, PNG или WebP для лучшего сжатия
+        */
+        
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-cta {
+            margin-top: 2rem;
+        }
+        
+        /* ========== Секция магазина ========== */
+        /* Блок с товарами (шаблонами, ботами, таплинками) */
+        .shop-section {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+        
+        .shop-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--gray-border);
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .tab-btn.active {
+            color: var(--secondary-color);
+        }
+        
+        .tab-btn.active:after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Карточки товаров */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-number {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            z-index: 2;
+        }
+        
+        /* 
+        ЗАМЕНА ИЗОБРАЖЕНИЙ В КАРТОЧКАХ ТОВАРОВ:
+        1. Замените URL в свойстве background-image ниже на путь к вашему изображению
+        2. Для каждой карточки товара можно задать уникальное изображение
+        3. Рекомендуемый размер: 600x400 пикселей для оптимального качества
+        4. Используйте теги <img> для семантической верстки изображений
+        */
+        
+        .product-image {
+            height: 200px;
+            background-color: #E2E8F0;
+            background-image: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+        }
+        
+        .product-price {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 0.5rem 0 1rem;
+        }
+        
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-features li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .product-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        /* ========== Секция услуг ========== */
+        /* Блок с карточками услуг студии */
+        .services-section {
+            padding: 6rem 0;
+            background-color: var(--light-color);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        
+        .service-features li {
+            padding: 0.5rem 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .service-features li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        /* ========== Секция шаблонов и ботов ========== */
+        .templates-section {
+            padding: 6rem 0;
+            background-color: var(--white);
+        }
+        
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .template-card {
+            background-color: var(--light-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .template-card:hover {
+            background-color: #EDF2F7;
+            transform: translateY(-5px);
+        }
+        
+        .template-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* ========== AI-помощник ========== */
+        .ai-assistant {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1A202C 100%);
+            color: var(--white);
+        }
+        
+        .ai-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .ai-message {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+        
+        .ai-input-container {
+            display: flex;
+            margin-top: 2rem;
+        }
+        
+        .ai-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border-radius: 8px 0 0 8px;
+            border: none;
+            font-size: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+        
+        .ai-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .ai-send-btn {
+            background-color: var(--accent-color);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .ai-send-btn:hover {
+            background-color: #805AD5;
+        }
+        
+        .char-counter {
+            text-align: right;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* ========== Футер ========== */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+        
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+        
+        .footer-cta {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-slogan {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        /* ========== Адаптивность ========== */
+        /* Медиа-запросы для разных размеров экранов */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .burger-menu {
+                display: flex;
+            }
+            
+            .header-actions .auth-btn {
+                display: none;
+            }
+            
+            .hero:before {
+                width: 100%;
+                opacity: 0.05;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            
+            .btn {
+                padding: 12px 24px;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .ai-input-container {
+                flex-direction: column;
+            }
+            
+            .ai-input, .ai-send-btn {
+                border-radius: 8px;
+                width: 100%;
+            }
+            
+            .ai-input {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .service-header {
+                flex-direction: column;
+            }
+            
+            .service-price {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* ========== Анимации появления при скролле ========== */
+        /* Классы для анимированных элементов */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Анимация для карточек товаров при наведении */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Анимация для кнопок */
+        .btn {
+            transition: transform 0.2s ease, background-color 0.3s ease, box-shadow 0.3s ease;
         }
     </style>
 </head>
-
-<body class="p-4 md:p-8">
-
-<div class="max-w-4xl mx-auto space-y-12">
-
-    <!-- ПРОГРАММА КУРСА -->
-    <section class="bg-[#FCF9F3] rounded-[40px] p-8 shadow-sm border border-stone-200">
-        <h2 class="serif text-2xl text-center uppercase tracking-widest text-[#9C7348] mb-8">
-            Программа курса
-        </h2>
-
-        <div class="space-y-4">
-
-            <div class="accordion-item border-b border-stone-200 pb-2 cursor-pointer"
-                 onclick="this.classList.toggle('active')">
-                <div class="flex justify-between items-center py-2">
-                    <span class="text-sm font-medium">Модуль 0. Вводные уроки</span>
-                    <svg class="w-4 h-4 transition-transform"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="2"
-                         viewBox="0 0 24 24">
-                        <path d="M19 9l-7 7-7-7"></path>
-                    </svg>
+<body>
+    <!-- ========== ШАПКА САЙТА (HEADER) ========== -->
+    <!-- Фиксированная шапка с логотипом, навигацией и корзиной -->
+    <header>
+        <div class="container header-container">
+            <!-- Логотип - текстовый вариант, можно заменить на изображение -->
+            <a href="#" class="logo">
+                B4 <span>FLOW</span>
+                <span class="logo-sub">CREATIVE STUDIO</span>
+            </a>
+            
+            <!-- Основное меню навигации -->
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#services" class="active">Разработка</a></li>
+                    <li><a href="#shop">Доступные товары</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Блок с действиями (корзина, авторизация) -->
+            <div class="header-actions">
+                <div class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">2</span>
                 </div>
-                <div class="accordion-content text-xs text-stone-500">
-                    Введение в профессию, обзор инструментов и настройка рабочего пространства.
-                </div>
-            </div>
-
-            <div class="accordion-item border-b border-stone-200 pb-2 cursor-pointer"
-                 onclick="this.classList.toggle('active')">
-                <div class="flex justify-between items-center py-2">
-                    <span class="text-sm font-medium">Модуль 1. Основы SMM</span>
-                    <svg class="w-4 h-4 transition-transform"
-                         fill="none"
-                         stroke="currentColor"
-                         stroke-width="2"
-                         viewBox="0 0 24 24">
-                        <path d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </div>
-                <div class="accordion-content text-xs text-stone-500">
-                    Стратегия продвижения, анализ целевой аудитории и конкурентов.
+                <button class="btn btn-outline auth-btn">Войти</button>
+                
+                <!-- Бургер-меню для мобильных устройств -->
+                <div class="burger-menu" id="burgerMenu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
-
+        </div>
+        
+        <!-- Мобильное меню (скрыто по умолчанию) -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul>
+                <li><a href="#services">Разработка</a></li>
+                <li><a href="#shop">Доступные товары</a></li>
+                <li><a href="#portfolio">Портфолио</a></li>
+                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#" class="btn btn-primary" style="margin-top: 1rem;">Оставить заявку</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- ========== ГЛАВНЫЙ ЭКРАН (HERO) ========== -->
+    <!-- Первый экран с основным сообщением и призывом к действию -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate-on-scroll">
+                <h1>B4 FLOW<br>CREATIVE STUDIO</h1>
+                <p class="hero-subtitle">ПОМОГАЕМ БИЗНЕСУ РАСТИ В ЦИФРЕ</p>
+                <div class="hero-cta">
+                    <a href="https://t.me/b4flow" target="_blank" class="btn btn-primary">
+                        ОБСУДИТЬ ПРОЕКТ
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
-
-    <!-- ТАРИФЫ -->
-    <section>
-        <h2 class="serif text-2xl text-center uppercase tracking-widest text-[#9C7348] mb-8">
-            Тарифы и цены
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- остальной код тарифов без ошибок -->
+    
+    <!-- ========== МАГАЗИН ГОТОВЫХ РЕШЕНИЙ ========== -->
+    <!-- Блок с товарами: шаблоны, боты, таплинки -->
+    <section class="shop-section" id="shop">
+        <div class="container">
+            <h2 class="section-title">ГОТОВЫЕ РЕШЕНИЯ ДЛЯ ВАШЕГО БИЗНЕСА</h2>
+            
+            <!-- Вкладки для переключения между категориями товаров -->
+            <div class="shop-tabs">
+                <button class="tab-btn active" data-tab="templates">ШАБЛОНЫ</button>
+                <button class="tab-btn" data-tab="bots">БОТЫ</button>
+                <button class="tab-btn" data-tab="taplinks">ТАПЛИНКИ</button>
+            </div>
+            
+            <!-- Содержимое вкладки "Шаблоны" -->
+            <div id="templates" class="tab-content active">
+                <div class="products-grid">
+                    <!-- Карточка товара 1: Галерея фотографа -->
+                    <div class="product-card animate-on-scroll">
+                        <div class="product-number">01</div>
+                        <!-- 
+                        ЗАМЕНА ИЗОБРАЖЕНИЯ ДЛЯ КАРТОЧКИ ТОВАРА:
+                        1. Замените URL в атрибуте src на путь к вашему изображению
+                        2. Для локального изображения используйте: src="images/gallery-template.jpg"
+                        3. Рекомендуемый размер: 600x400 пикселей
+                        4. Не забудьте добавить alt-текст для доступности
+                        -->
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1555099962-4199c345e5dd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                        <div class="product-content">
+                            <h3>ГАЛЕРЕЯ ФОТОГРАФА</h3>
+                            <div class="product-price">39 000 ₽</div>
+                            <p>Премиум одностраничник с множественными галереями. Современная типографика и плавные анимации. Полная адаптивность и SEO-оптимизация.</p>
+                            <ul class="product-features">
+                                <li>Сложная структура с 9 галереями</li>
+                                <li>Уникальная типографика</li>
+                                <li>Продвинутые анимации GSAP</li>
+                                <li>Полная кастомизация</li>
+                            </ul>
+                            <div class="product-actions">
+                                <button class="btn btn-primary">ПРОТЕСТИРОВАТЬ ШАБЛОН</button>
+                                <button class="btn btn-outline">+ В КОРЗИНУ</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Карточка товара 2: Портфолио фотографа -->
+                    <div class="product-card animate-on-scroll">
+                        <div class="product-number">02</div>
+                        <!-- 
+                        ЗАМЕНА ИЗОБРАЖЕНИЯ ДЛЯ КАРТОЧКИ ТОВАРА:
+                        1. Замените URL в атрибуте src на путь к вашему изображению
+                        2. Для локального изображения используйте: src="images/portfolio-template.jpg"
+                        3. Рекомендуемый размер: 600x400 пикселей
+                        4. Не забудьте добавить alt-текст для доступности
+                        -->
+                        <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1516035069371-29a1b244cc32?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80');"></div>
+                        <div class="product-content">
+                            <h3>ПОРТФОЛИО ФОТОГРАФА</h3>
+                            <div class="product-price">49 000 ₽</div>
+                            <p>Интерактивная галерея с эффектами. Идеально для художников и дизайнеров. Уникальные переходы и анимации.</p>
+                            <ul class="product-features">
+                                <li>Интерактивные эффекты</li>
+                                <li>Кастомные переходы</li>
+                                <li>Профессиональная структура портфолио</li>
+                            </ul>
+                            <div class="product-actions">
+                                <button class="btn btn-primary">ПРОТЕСТИРОВАТЬ ШАБЛОН</button>
+                                <button class="btn btn-outline">+ В КОРЗИНУ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Содержимое вкладки "Боты" -->
+            <div id="bots" class="tab-content">
+                <div class="products-grid">
+                    <!-- Карточка товара для ботов -->
+                    <div class="product-card animate-on-scroll">
+                        <div class="product-content">
+                            <h3>AI ПОМОЩНИК</h3>
+                            <div class="product-price">ОТ 15 990 ₽</div>
+                            <p>Самые функциональные боты в мире для вашего бизнеса. Автоматизация процессов, интеграции, умная аналитика.</p>
+                            <ul class="product-features">
+                                <li>ИИ и машинное обучение</li>
+                                <li>Интеграции с API</li>
+                                <li>Аналитика и отчеты</li>
+                                <li>Любой сложности</li>
+                            </ul>
+                            <div class="product-actions">
+                                <button class="btn btn-primary">ЗАКАЗАТЬ БОТА</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Содержимое вкладки "Таплинки" -->
+            <div id="taplinks" class="tab-content">
+                <div class="products-grid">
+                    <!-- Карточка товара для таплинков -->
+                    <div class="product-card animate-on-scroll">
+                        <div class="product-content">
+                            <h3>ШАБЛОНЫ СТРАНИЦ И ТАПЛИНКОВ</h3>
+                            <div class="product-price">ОТ 3 990 ₽</div>
+                            <p>Готовые решения для быстрого запуска вашего проекта. Уникальные дизайны, адаптивная верстка, современные анимации.</p>
+                            <ul class="product-features">
+                                <li>Адаптивный дизайн</li>
+                                <li>Современные анимации</li>
+                                <li>Быстрая загрузка</li>
+                            </ul>
+                            <div class="product-actions">
+                                <button class="btn btn-primary">ПРОТЕСТИРОВАТЬ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-
-</div>
-
+    
+    <!-- ========== УСЛУГИ СТУДИИ ========== -->
+    <!-- Блок с карточками услуг студии -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">РАЗРАБОТКА И УСЛУГИ</h2>
+            
+            <div class="services-grid">
+                <!-- Карточка услуги 1: Продающие лендинги -->
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <h3>ПРОДАЮЩИЕ ЛЕНДИНГИ<br>И упаковка онлайн-курсов</h3>
+                        <div class="service-price">ОТ 25 000 ₽</div>
+                    </div>
+                    <p>Создаем дизайн, который презентует ваш курс выгодно и убеждает купить. Идеально для: Авторов курсов, инфобизнесменов, образовательных стартапов.</p>
+                    <ul class="service-features">
+                        <li>Ясное позиционирование</li>
+                        <li>Привлекательная упаковка</li>
+                        <li>Лендинг, который продает</li>
+                        <li>Интеграция с платежными системами</li>
+                        <li>Адаптивный дизайн</li>
+                        <li>SEO-оптимизация</li>
+                    </ul>
+                </div>
+                
+                <!-- Карточка услуги 2: Академии для сотрудников -->
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <h3>АКАДЕМИИ ДЛЯ СОТРУДНИКОВ<br>Базы знаний и онбординг</h3>
+                        <div class="service-price">ОТ 50 000 ₽</div>
+                    </div>
+                    <p>Ускоряем адаптацию новых сотрудников и создаем единый источник корпоративных знаний. Идеально для: HR-отделов, корпоративного обучения, адаптации сотрудников, крупных компаний.</p>
+                    <ul class="service-features">
+                        <li>Онбординг-порталы</li>
+                        <li>Базы знаний (Wiki)</li>
+                        <li>Формы обратной связи</li>
+                        <li>Система прогресса</li>
+                        <li>Мобильный доступ</li>
+                    </ul>
+                </div>
+                
+                <!-- Карточка услуги 3: Оценка навыков -->
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <h3>ОЦЕНКА НАВЫКОВ<br>Skills Assessment и HR-тесты</h3>
+                        <div class="service-price">ОТ 45 000 ₽</div>
+                    </div>
+                    <p>Не учебный сайт, а диагностический. Объективно оценить компетенции, выявить пробелы для дальнейшего обучения. Идеально для: HR-департаментов, кадрового резерва, оценки компетенций.</p>
+                    <ul class="service-features">
+                        <li>Серия тестов, кейсов и симуляторов</li>
+                        <li>Автоматическая генерация отчетов</li>
+                        <li>Интеграция с HR-системами</li>
+                    </ul>
+                </div>
+                
+                <!-- Карточка услуги 4: Чат-боты и AI -->
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <h3>ЧАТ-БОТЫ И AI<br>Ассистенты для вашего бизнеса</h3>
+                        <div class="service-price">ОТ 30 000 ₽</div>
+                    </div>
+                    <p>Автоматизируем продажи, поддержку и коммуникацию, чтобы вы могли заниматься главным. Идеально для: Интернет-магазинов, сервисных компаний, стартапов.</p>
+                    <ul class="service-features">
+                        <li>Продажи 24/7</li>
+                        <li>Мгновенная поддержка</li>
+                        <li>Гениальный маркетолог</li>
+                        <li>Автоматизация рутины</li>
+                    </ul>
+                </div>
+                
+                <!-- Карточка услуги 5: Разработка и упаковка курсов -->
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <h3>РАЗРАБОТКА И УПАКОВКА КУРСОВ<br>Полный цикл создания образовательного продукта</h3>
+                        <div class="service-price">ОТ 80 000 ₽</div>
+                    </div>
+                    <p>Создаем успешные онлайн-курсы с нуля: от концепции до запуска и монетизации. Идеально для: Экспертов, коучей, тренеров, образовательных стартапов.</p>
+                    <ul class="service-features">
+                        <li>Концепция и структура</li>
+                        <li>Создание контента</li>
+                        <li>Платформа обучения (LMS)</li>
+                        <li>Маркетинговая упаковка</li>
+                        <li>Монетизация</li>
+                        <li>Техническая поддержка</li>
+                    </ul>
+                </div>
+                
+                <!-- Карточка услуги 6: Образовательные порталы -->
+                <div class="service-card animate-on-scroll">
+                    <div class="service-header">
+                        <h3>РАЗРАБОТКА ОБРАЗОВАТЕЛЬНЫХ ПОРТАЛОВ<br>Полнофункциональные LMS платформы</h3>
+                        <div class="service-price">ОТ 120 000 ₽</div>
+                    </div>
+                    <p>Создаем комплексные образовательные платформы с уроками, тестами, сертификатами и всей необходимой инфраструктурой. Идеально для: Университетов, онлайн-школ, корпоративного обучения.</p>
+                    <ul class="service-features">
+                        <li>Система уроков</li>
+                        <li>Интерактивные тесты</li>
+                        <li>Сертификация</li>
+                        <li>Система пользователей</li>
+                        <li>Аналитика и отчеты</li>
+                        <li>Мобильное приложение</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== AI-ПОМОЩНИК ========== -->
+    <!-- Интерактивный блок с AI-помощником -->
+    <section class="ai-assistant">
+        <div class="container ai-container">
+            <h2 class="section-title" style="color: white;">AI ПОМОЩНИК ОНЛАЙН</h2>
+            
+            <div class="ai-message animate-on-scroll">
+                <p>Привет! Я помогу автоматизировать ваш бизнес. Что вас интересует?</p>
+            </div>
+            
+            <div class="ai-input-container">
+                <input type="text" class="ai-input" placeholder="Напишите сообщение..." maxlength="300" id="aiInput">
+                <button class="ai-send-btn" id="aiSendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <div class="char-counter">
+                <span id="charCount">0</span>/300
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== ФУТЕР ========== -->
+    <!-- Нижняя часть сайта с контактами и ссылками -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-cta">
+                <h3 class="footer-slogan">ВЫХОДИМ ЗА РАМКИ</h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">Создайте уникальный проект с нами!</p>
+                <a href="https://t.me/b4flow" target="_blank" class="btn btn-primary">ОБСУДИТЬ ПРОЕКТ</a>
+            </div>
+            
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">B4 <span>FLOW</span></div>
+                    <p style="color: rgba(255, 255, 255, 0.7);">Премиум разработка сайтов и веб-приложений. Помогаем бизнесу расти в цифре.</p>
+                    <div class="footer-social">
+                        <a href="https://t.me/b4flow" class="social-icon" target="_blank">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://vk.com/b4flow" class="social-icon" target="_blank">
+                            <i class="fab fa-vk"></i>
+                        </a>
+                        <a href="https://behance.net/b4flow" class="social-icon" target="_blank">
+                            <i class="fab fa-behance"></i>
+                        </a>
+                        <a href="https://twitter.com/b4flow" class="social-icon" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#services">Разработка сайтов</a></li>
+                        <li><a href="#services">Лендинги</a></li>
+                        <li><a href="#services">Образовательные порталы</a></li>
+                        <li><a href="#services">Чат-боты и AI</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Товары</h4>
+                    <ul>
+                        <li><a href="#shop">Шаблоны сайтов</a></li>
+                        <li><a href="#shop">Готовые боты</a></li>
+                        <li><a href="#shop">Таплинки</a></li>
+                        <li><a href="#shop">Микросайты</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Контакты</h4>
+                    <ul>
+                        <li><a href="mailto:info@b4flow.com">info@b4flow.com</a></li>
+                        <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                        <li><a href="https://t.me/b4flow" target="_blank">Telegram: @b4flow</a></li>
+                        <li>Москва, Россия</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2023 B4 FLOW Creative Studio. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- ========== JAVASCRIPT ========== -->
+    <!-- Все скрипты для интерактивности сайта -->
+    <script>
+        // ========== ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ СТРАНИЦЫ ==========
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Сайт B4 FLOW Creative Studio загружен');
+            
+            // ========== НАСТРОЙКА МОБИЛЬНОГО МЕНЮ ==========
+            // Открытие/закрытие мобильного меню при клике на бургер
+            const burgerMenu = document.getElementById('burgerMenu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (burgerMenu && mobileMenu) {
+                burgerMenu.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('active');
+                    burgerMenu.classList.toggle('active');
+                    
+                    // Анимация бургер-меню в "крестик"
+                    const spans = burgerMenu.querySelectorAll('span');
+                    if (mobileMenu.classList.contains('active')) {
+                        spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                        spans[1].style.opacity = '0';
+                        spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+                    } else {
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                    }
+                });
+                
+                // Закрытие мобильного меню при клике на ссылку
+                const mobileLinks = mobileMenu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        burgerMenu.classList.remove('active');
+                        
+                        const spans = burgerMenu.querySelectorAll('span');
+                        spans[0].style.transform = 'none';
+                        spans[1].style.opacity = '1';
+                        spans[2].style.transform = 'none';
+                    });
+                });
+            }
+            
+            // ========== ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК В МАГАЗИНЕ ==========
+            // Реализация табов для переключения между категориями товаров
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Удаляем класс active у всех кнопок и содержимого
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Добавляем класс active к текущей кнопке
+                    button.classList.add('active');
+                    
+                    // Показываем соответствующее содержимое
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // ========== СЧЕТЧИК СИМВОЛОВ ДЛЯ AI-ПОМОЩНИКА ==========
+            // Отслеживание количества введенных символов в поле AI-помощника
+            const aiInput = document.getElementById('aiInput');
+            const charCount = document.getElementById('charCount');
+            const aiSendBtn = document.getElementById('aiSendBtn');
+            
+            if (aiInput && charCount) {
+                aiInput.addEventListener('input', function() {
+                    charCount.textContent = this.value.length;
+                    
+                    // Меняем цвет счетчика при приближении к лимиту
+                    if (this.value.length > 250) {
+                        charCount.style.color = '#F56565';
+                    } else if (this.value.length > 200) {
+                        charCount.style.color = '#ED8936';
+                    } else {
+                        charCount.style.color = 'rgba(255, 255, 255, 0.6)';
+                    }
+                });
+            }
+            
+            if (aiSendBtn) {
+                aiSendBtn.addEventListener('click', function() {
+                    if (aiInput.value.trim() === '') {
+                        alert('Пожалуйста, введите сообщение');
+                        return;
+                    }
+                    
+                    // Имитация отправки сообщения AI-помощнику
+                    alert('Сообщение отправлено AI-помощнику. Мы свяжемся с вами в ближайшее время!');
+                    aiInput.value = '';
+                    charCount.textContent = '0';
+                    charCount.style.color = 'rgba(255, 255, 255, 0.6)';
+                });
+            }
+            
+            // ========== АНИМАЦИИ ПРИ СКРОЛЛЕ ==========
+            // Добавление анимаций при прокрутке страницы
+            const animateElements = document.querySelectorAll('.animate-on-scroll');
+            
+            // Функция проверки видимости элемента
+            function checkVisibility() {
+                animateElements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    // Элемент становится видимым, когда он входит в область просмотра
+                    if (elementPosition.top < windowHeight - 100) {
+                        element.classList.add('animated');
+                    }
+                });
+            }
+            
+            // Проверяем видимость при загрузке и прокрутке
+            checkVisibility();
+            window.addEventListener('scroll', checkVisibility);
+            
+            // ========== GSAP АНИМАЦИИ ==========
+            // Настройка анимаций с использованием библиотеки GSAP
+            if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+                // Инициализация ScrollTrigger
+                gsap.registerPlugin(ScrollTrigger);
+                
+                // Анимация для заголовка главного экрана
+                gsap.from('.hero-content h1', {
+                    duration: 1.2,
+                    y: 50,
+                    opacity: 0,
+                    ease: 'power3.out'
+                });
+                
+                gsap.from('.hero-subtitle', {
+                    duration: 1.2,
+                    y: 30,
+                    opacity: 0,
+                    delay: 0.3,
+                    ease: 'power3.out'
+                });
+                
+                gsap.from('.hero-cta', {
+                    duration: 1,
+                    y: 30,
+                    opacity: 0,
+                    delay: 0.6,
+                    ease: 'power3.out'
+                });
+                
+                // Анимация для карточек товаров при скролле
+                gsap.utils.toArray('.product-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        duration: 0.8,
+                        y: 30,
+                        opacity: 0,
+                        delay: i * 0.1,
+                        ease: 'power2.out'
+                    });
+                });
+                
+                // Анимация для карточек услуг при скролле
+                gsap.utils.toArray('.service-card').forEach((card, i) => {
+                    gsap.from(card, {
+                        scrollTrigger: {
+                            trigger: card,
+                            start: 'top 85%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        duration: 0.8,
+                        y: 30,
+                        opacity: 0,
+                        delay: i * 0.1,
+                        ease: 'power2.out'
+                    });
+                });
+            }
+            
+            // ========== ИНИЦИАЛИЗАЦИЯ КОРЗИНЫ ==========
+            // Обработка добавления товаров в корзину
+            const addToCartButtons = document.querySelectorAll('.btn-outline');
+            const cartCount = document.querySelector('.cart-count');
+            let cartItems = 2; // Начальное количество товаров в корзине
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Анимация добавления в корзину
+                    cartItems++;
+                    cartCount.textContent = cartItems;
+                    
+                    // Анимация счетчика корзины
+                    cartCount.style.transform = 'scale(1.3)';
+                    setTimeout(() => {
+                        cartCount.style.transform = 'scale(1)';
+                    }, 300);
+                    
+                    // Визуальная обратная связь
+                    const originalText = this.textContent;
+                    this.textContent = 'ДОБАВЛЕНО!';
+                    this.style.backgroundColor = '#48BB78';
+                    this.style.color = 'white';
+                    this.style.borderColor = '#48BB78';
+                    
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                        this.style.backgroundColor = '';
+                        this.style.color = '';
+                        this.style.borderColor = '';
+                    }, 1500);
+                });
+            });
+            
+            // ========== ПЛАВНАЯ ПРОКРУТКА ДЛЯ ССЫЛОК ==========
+            // Обработка кликов по якорным ссылкам для плавной прокрутки
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // ========== ВАЛИДАЦИЯ ФОРМЫ АВТОРИЗАЦИИ ==========
+            // Базовая валидация формы входа
+            const authBtn = document.querySelector('.auth-btn');
+            if (authBtn) {
+                authBtn.addEventListener('click', function() {
+                    // Здесь можно реализовать модальное окно авторизации
+                    alert('Форма авторизации будет реализована на следующем этапе разработки');
+                });
+            }
+        });
+        
+        // ========== ОБРАБОТЧИК РЕСАЙЗА ОКНА ==========
+        // Оптимизация поведения при изменении размера окна
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Обновление позиций для анимаций при скролле
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.refresh();
+                }
+            }, 250);
+        });
+    </script>
 </body>
 </html>
